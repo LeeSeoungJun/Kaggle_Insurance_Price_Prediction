@@ -12,5 +12,5 @@ The dataset for this competition (both train and test) was generated from a deep
 - **Evaluation**: RMSLE
 
 
-## Kaggle Competition Link
-For more details, you can visit the Dacon competition page.
+## Kaggle Competition Link  
+For more details, you can visit the [Dacon competition page](https://www.kaggle.com/competitions/playground-series-s4e12/overview).
