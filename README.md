@@ -13,4 +13,4 @@ The dataset for this competition (both train and test) was generated from a deep
 
 
 ## Kaggle Competition Link  
-For more details, you can visit the [Dacon competition page](https://www.kaggle.com/competitions/playground-series-s4e12/overview).
+For more details, you can visit the [Kaggle competition page](https://www.kaggle.com/competitions/playground-series-s4e12/overview).
