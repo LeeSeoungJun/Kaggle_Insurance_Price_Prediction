@@ -44,3 +44,14 @@ Validation RMSE: 843.78
 
 전체 EDA, 전처리 및 모델링 과정은  
 `Insurance_regression.ipynb`에서 확인할 수 있습니다.
+
+
+## 원본 데이터
+
+- `train.csv`: 학습 데이터
+- `test.csv`: 예측 대상 데이터
+- `sample_submission.csv`: 제출 형식 예시
+
+저장소 루트에서 노트북을 실행하면 포함된 데이터를 읽을 수 있습니다.
+
+대용량 `train.csv`와 `test.csv`는 Git LFS로 관리합니다. Git LFS를 설치한 후 `git lfs pull`로 원본 파일을 내려받으세요.
