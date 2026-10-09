@@ -1,0 +1,4 @@
+model,selection_rmsle
+Log-LightGBM,1.045915431136498
+Log-XGBoost,1.0475646786427528
+Log-mean baseline,1.0966391994416234

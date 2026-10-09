@@ -1,57 +1,36 @@
-# Insurance Premium Prediction
+# 보험료 예측
 
-Kaggle **Playground Series - Season 4, Episode 12** 데이터를 활용해 고객 정보를 기반으로 보험료(`Premium Amount`)를 예측한 회귀 프로젝트입니다.
+## 분석 질문과 방법
 
-🔗 [Kaggle Competition](https://www.kaggle.com/competitions/playground-series-s4e12/overview)
+RMSLE에 맞춰 log1p 보험료 모델과 로그 평균 기준 모델을 비교합니다. 학습 80% 내부 선택용 분리로 모델을 고르고 미사용 20% 홀드아웃을 평가합니다. 결측·범주형 처리는 Pipeline 안에서 학습하며 테스트에 같은 기준을 적용합니다. 명목 범주의 임의 순서를 OLS 계수로 해석하지 않습니다. 원본 전체 120만 행을 사용합니다. 이 자료의 관계를 실제 보험료의 인과 효과로 해석하지 않습니다.
 
-## 프로젝트 목표
+## 실행
 
-고객의 나이, 소득, 건강 상태, 신용 점수, 보험 이력 등의 데이터를 활용해 보험료를 예측하는 머신러닝 모델을 구축했습니다.
+Python 3.11 이상에서 저장소 폴더를 작업 디렉터리로 사용합니다.
 
-## 분석 과정
-
-### 1. 데이터 전처리
-- 결측치 처리
-  - 수치형: 평균값 대체
-  - 범주형: 최빈값 대체
-- `Policy Start Date`에서 연도, 월, 일 등 날짜 파생변수 생성
-- `StandardScaler`를 활용한 수치형 변수 표준화
-- `OrdinalEncoder`를 활용한 범주형 변수 인코딩
-
-### 2. 데이터 분석
-- 주요 수치형 변수 간 상관관계 분석
-- 직업 등 범주형 변수와 보험료 간 관계 시각화
-- OLS 회귀 분석을 활용한 변수 영향 확인
-
-### 3. 모델링
-- Train / Validation 데이터를 8:2 비율로 분리
-- `XGBRegressor`를 활용해 보험료 예측 모델 학습
-
-### 4. 평가
-
-Kaggle 공식 평가 지표는 **RMSLE**이며, 모델 학습 과정에서는 Validation 데이터 기준 RMSE도 확인했습니다.
-
-```text
-Validation RMSE: 843.78
+```bash
+python -m pip install -r requirements.txt
+python analysis.py
 ```
 
-## 사용 기술
+[Insurance_regression.ipynb](Insurance_regression.ipynb)에서 실행 결과와 그래프를 확인할 수 있습니다.
+원본 데이터 경로는 기존 저장소와 동일합니다. 주가 프로젝트만 최초 실행 시 Yahoo Finance 연결이 필요합니다.
 
-`Python` `Pandas` `NumPy` `Matplotlib` `Seaborn`  
-`Scikit-learn` `XGBoost` `Statsmodels`
+## 결과와 한계
 
-## Notebook
+실제 실행 결과는 `outputs/metrics.json`과 `outputs/`의 비교표·그래프에 저장됩니다.
+수정 전 저장된 점수는 새 검증 결과와 혼용하지 않습니다. 검증 점수는 대회 리더보드 점수가 아닙니다.
+모델을 정한 뒤 제출 데이터 전체를 예측하며, 제출 파일을 만들었다는 사실이 대회에 제출했다는 의미는 아닙니다.
+분석에서 확인한 관계와 제안은 실제 업무 개선 효과를 증명하지 않습니다.
 
-전체 EDA, 전처리 및 모델링 과정은  
-`Insurance_regression.ipynb`에서 확인할 수 있습니다.
+## 재실행 결과 (2026-10-10)
 
-
-## 원본 데이터
-
-- `train.csv`: 학습 데이터
-- `test.csv`: 예측 대상 데이터
-- `sample_submission.csv`: 제출 형식 예시
-
-저장소 루트에서 노트북을 실행하면 포함된 데이터를 읽을 수 있습니다.
-
-대용량 `train.csv`와 `test.csv`는 Git LFS로 관리합니다. Git LFS를 설치한 후 `git lfs pull`로 원본 파일을 내려받으세요.
+```json
+{
+  "selected_model": "Log-LightGBM",
+  "holdout_rmsle": 1.0487463495642597,
+  "baseline_rmsle": 1.097964437014376,
+  "holdout_rmse": 921.4959586817513,
+  "split_seed": 2026
+}
+```

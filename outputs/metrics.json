@@ -1,0 +1,7 @@
+{
+  "selected_model": "Log-LightGBM",
+  "holdout_rmsle": 1.0487463495642597,
+  "baseline_rmsle": 1.097964437014376,
+  "holdout_rmse": 921.4959586817513,
+  "split_seed": 2026
+}
